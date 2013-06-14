@@ -2,16 +2,16 @@ package org.mixing.colors;
 
 public class Color {
 
-    private final int number;
+    private final int id;
     private final ColorType colorType;
 
-    public Color(int number, ColorType colorType) {
-        this.number = number;
+    public Color(int id, ColorType colorType) {
+        this.id = id;
         this.colorType = colorType;
     }
 
-    public int getNumber() {
-        return number;
+    public int getId() {
+        return id;
     }
 
     public ColorType getColorType() {
@@ -25,20 +25,20 @@ public class Color {
 
         Color color = (Color) o;
 
-        if (number != color.number) return false;
+        if (id != color.id) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        return number;
+        return id;
     }
 
     @Override
     public String toString() {
         return "Color{" +
-                "number=" + number +
+                "id=" + id +
                 ", colorType=" + colorType +
                 '}';
     }

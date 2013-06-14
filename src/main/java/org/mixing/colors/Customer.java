@@ -2,10 +2,10 @@ package org.mixing.colors;
 
 public class Customer {
 
-    private final int name;
+    private final int id;
 
-    public Customer(int name) {
-        this.name = name;
+    public Customer(int id) {
+        this.id = id;
     }
 
     @Override
@@ -15,20 +15,20 @@ public class Customer {
 
         Customer customer = (Customer) o;
 
-        if (name != customer.name) return false;
+        if (id != customer.id) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        return name;
+        return id;
     }
 
     @Override
     public String toString() {
         return "Customer{" +
-                "name=" + name +
+                "id=" + id +
                 '}';
     }
 }
