@@ -3,20 +3,22 @@ package org.mixing.colors;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.TestCase.assertNotNull;
+import static org.mixing.colors.MixingAlgoritmUtils.*;
 
 public class MixingAlgorithmTestAllColorsGlossy {
+
+    public static final int NUMBER_OF_CUSTOMERS = 6;
 
     @Test
     public void
     should_return_all_the_colors_glossy() {
         // Prepare
-        MixingAlgorithm mixingAlgorithm = new MixingAlgorithm(6);
+        MixingAlgorithm mixingAlgorithm = new MixingAlgorithm(NUMBER_OF_CUSTOMERS);
 
         // Exercise
         List<Color> result = mixingAlgorithm.mix(createFavoriteColorMatte(), createFavoriteColorGlossy());
@@ -40,31 +42,8 @@ public class MixingAlgorithmTestAllColorsGlossy {
         return glossyFavorites;
     }
 
-    private List<Customer> createCustomers(int... customerNumbers) {
-        List<Customer> customers = new ArrayList<>();
-        for (int customerNumber: customerNumbers) {
-            customers.add(new Customer(customerNumber));
-        }
-        return customers;
-    }
-
     private List<FavoriteColor> createFavoriteColorMatte() {
         return Collections.emptyList();
     }
-
-    private FavoriteColor create(int colorNumber, ColorType colorType, List<Customer> customersThatLikeColor) {
-        Color color = new Color(colorNumber, colorType);
-        return new FavoriteColor(color, customersThatLikeColor);
-    }
-
-    private List<Color> createColorList(ColorType... colorProperties) {
-        List<Color> colors = new ArrayList<Color>();
-        for (int i = 0; i < colorProperties.length; i++) {
-            Color color = new Color(i + 1, colorProperties[i]);
-            colors.add(color);
-        }
-        return colors;
-    }
-
 
 }
