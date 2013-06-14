@@ -1,27 +1,35 @@
 package org.mixing.colors;
 
-import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.junit.Assert.*;
+
 public class MixingAlgorithmFirstExampleTest {
 
     public static final int NUMBER_OF_CUSTOMERS = 1;
+    public static final int NUMBER_OF_COLORS = 5;
 
+    @Ignore("Not yet implemented")
     @Test
     public void
     should_return_all_the_colors_glossy_except_for_the_first() {
         // Prepare
-        MixingAlgorithm mixingAlgorithm = new MixingAlgorithm(NUMBER_OF_CUSTOMERS);
+        MixingAlgorithm mixingAlgorithm = new MixingAlgorithm(NUMBER_OF_CUSTOMERS, NUMBER_OF_COLORS);
 
         // Exercise
         List<Color> result = mixingAlgorithm.mix(createFavoriteColorMatte(), createFavoriteColorGlossy());
 
         // Verify
-        Assert.assertTrue(result.isEmpty());
+        assertNotNull(result);
+        assertEquals(createColorList(ColorType.GLOSSY,
+                                        ColorType.GLOSSY,
+                                        ColorType.GLOSSY,
+                                        ColorType.GLOSSY), result);
     }
 
     private List<FavoriteColor> createFavoriteColorGlossy() {

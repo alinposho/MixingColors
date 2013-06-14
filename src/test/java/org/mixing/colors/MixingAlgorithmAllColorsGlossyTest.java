@@ -10,15 +10,16 @@ import static junit.framework.Assert.assertEquals;
 import static junit.framework.TestCase.assertNotNull;
 import static org.mixing.colors.MixingAlgoritmUtils.*;
 
-public class MixingAlgorithmTestAllColorsGlossy {
+public class MixingAlgorithmAllColorsGlossyTest {
 
     public static final int NUMBER_OF_CUSTOMERS = 6;
+    public static final int NUMBER_OF_COLORS = 4;
 
     @Test
     public void
     should_return_all_the_colors_glossy() {
         // Prepare
-        MixingAlgorithm mixingAlgorithm = new MixingAlgorithm(NUMBER_OF_CUSTOMERS);
+        MixingAlgorithm mixingAlgorithm = new MixingAlgorithm(NUMBER_OF_CUSTOMERS, NUMBER_OF_COLORS);
 
         // Exercise
         List<Color> result = mixingAlgorithm.mix(createFavoriteColorMatte(), createFavoriteColorGlossy());

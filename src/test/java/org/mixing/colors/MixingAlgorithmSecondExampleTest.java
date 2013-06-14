@@ -13,12 +13,13 @@ public class MixingAlgorithmSecondExampleTest {
 
 
     public static final int NUMBER_OF_CUSTOMERS = 2;
+    public static final int NUMBER_OF_COLORS = 1;
 
     @Test
     public void
     should_return_an_empty_list_since_the_two_customers_prefer_different_types_of_same_colors() {
         // Prepare
-        MixingAlgorithm mixingAlgorithm = new MixingAlgorithm(NUMBER_OF_CUSTOMERS);
+        MixingAlgorithm mixingAlgorithm = new MixingAlgorithm(NUMBER_OF_CUSTOMERS, NUMBER_OF_COLORS);
 
         // Exercise
         List<Color> result = mixingAlgorithm.mix(createFavoriteColorMatte(), createFavoriteColorGlossy());
