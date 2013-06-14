@@ -4,8 +4,12 @@ import java.util.*;
 
 public class MixingAlgorithm {
 
-    private List<Customer> customers = new ArrayList<>();
-    private List<Color> colors = new ArrayList<>();
+    private int numberOfCustomers;
+    private int numberOfColors;
+
+    public MixingAlgorithm(int numberOfCustomers) {
+        this.numberOfCustomers = numberOfCustomers;
+    }
 
     public List<Color> mix(List<FavoriteColor> favoriteColorMatte, List<FavoriteColor> favoriteColorGlossy) {
         Set<Customer> pickedCustomers = new HashSet<>();
@@ -14,7 +18,7 @@ public class MixingAlgorithm {
         for(FavoriteColor favoriteColor : favoriteColorGlossy){
             pickedCustomers.addAll(favoriteColor.getCustomers());
         }
-        if(customers.size() == pickedCustomers. size()) {
+        if(numberOfCustomers == pickedCustomers. size()) {
             return extract(favoriteColorGlossy);
         }
 
