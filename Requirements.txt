@@ -1,0 +1,20 @@
+Discoveries:
+
+ - Since there can be only one matte preferred color per customer the following case cannot happen
+     1M 2G
+     1G 2M
+     1M 2G
+ Therefore we cannot have a triangle in this case.
+
+ - However, the following case can happen:
+    1M
+    1G 2M
+       2G
+ And in this case we do not have a possible solution to the problem. I will have to think about how to detect this case.
+ Maibe remove the first preference from the list of colors when checking whether the second customer should be added to
+ the list of visited customers.
+ -
+    1M 2G
+    1G 2M 3G
+       2M
+          3M
