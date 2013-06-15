@@ -70,13 +70,17 @@ class ColorMixing {
             } else {
                 resultingCustomers.add(customer);
                 addSiblingsToResult(favoriteColor);
-                resultingColors.add(favoriteColor);
+                if (!resultingColors.contains(favoriteColor)) {
+                    resultingColors.add(favoriteColor);
+                }
             }
         }
     }
 
     private void addSiblingsToResult(Color favoriteColor) {
-        resultingCustomers.addAll(getCustomersWhoFavor(favoriteColor));
+        List<Customer> customersWhoFavor = getCustomersWhoFavor(favoriteColor);
+        resultingCustomers.addAll(customersWhoFavor);
+        outlawCustomers.removeAll(customersWhoFavor);
     }
 
     private List<Customer> getCustomersWhoFavor(Color favoriteColor) {
@@ -102,12 +106,12 @@ class ColorMixing {
         }
         resultingColors.remove(similar);
         resultingColors.add(favoriteColor);
+        addSiblingsToResult(favoriteColor);
     }
 
     private Color getGlossyColorSimilarTo(Color favoriteColor) {
         for (Color color : resultingColors) {
-            if (color.getId() == favoriteColor.getId()) {
-                assert color.getColorType() == ColorType.GLOSSY && favoriteColor.getColorType() == ColorType.MATTE;
+            if (color.getId() == favoriteColor.getId() && color.getColorType() == ColorType.GLOSSY) {
                 return color;
             }
         }

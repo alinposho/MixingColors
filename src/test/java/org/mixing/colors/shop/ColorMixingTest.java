@@ -51,8 +51,20 @@ public class ColorMixingTest {
 
     @Test(expected = NoPossibleSolutionException.class)
     public void
-    should_return_raise_an_exception_since_there_are_no_possible_solutions() throws NoPossibleSolutionException {
+    should_return_raise_an_exception_since_there_are_no_possible_solutions_one_color() throws NoPossibleSolutionException {
         runTestForOneColorInTheShop("NoPossibleSolutionOneCustomerDifferentOptions.txt", "1 G");
+    }
+
+    @Test(expected = NoPossibleSolutionException.class)
+    public void
+    should_return_raise_an_exception_since_there_are_no_possible_solutions_two_colors() throws NoPossibleSolutionException {
+        runTestForOneColorInTheShop("NoPossibleSolutionTwoColors.txt", "1 G");
+    }
+
+    @Test
+    public void
+    should_return_all_colors_matte_although_we_have_glossy_options() throws NoPossibleSolutionException {
+        runTestForOneColorInTheShop("SomeFavoritreColorsGlossyAllResultingColorsMatte.txt", "1 M 2 M 3 M");
     }
 
     private void runTestForOneColorInTheShop(String fileName, String expectedColorsEncoded) throws NoPossibleSolutionException {
