@@ -1,5 +1,6 @@
 package org.mixing.colors.shop;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.mixing.colors.Color;
 import org.mixing.colors.exceptions.NoPossibleSolutionException;
@@ -35,6 +36,19 @@ public class ColorMixingTest {
     public void
     should_return_all_the_colors_glossy_although_some_favorites_are_matte() throws NoPossibleSolutionException {
         runTestForOneColorInTheShop("SomeFavoriteColorsMatteButResultAllGlossy.txt", "1 G 2 G 3 G 4 G 5 G");
+    }
+
+    @Test
+    public void
+    should_return_one_matte_color_in_the_output_no_conflicting_preferences() throws NoPossibleSolutionException {
+        runTestForOneColorInTheShop("OneResultingColorMatte-NoConflictingPreferences.txt", "1 G 2 G 3 G 4 G 5 M");
+    }
+
+    @Ignore("Not yet implemented")
+    @Test
+    public void
+    should_return_one_matte_color_in_the_output_with_conflicting_preferences() throws NoPossibleSolutionException {
+        runTestForOneColorInTheShop("OneResultingColorMatte-WithConflictingPreferences.txt", "1 G 2 G 3 G 4 G 5 M");
     }
 
     private void runTestForOneColorInTheShop(String fileName, String expectedColorsEncoded) throws NoPossibleSolutionException {

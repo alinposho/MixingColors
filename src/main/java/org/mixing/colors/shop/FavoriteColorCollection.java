@@ -3,10 +3,7 @@ package org.mixing.colors.shop;
 import org.mixing.colors.Color;
 import org.mixing.colors.Customer;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class FavoriteColorCollection {
 
@@ -40,4 +37,5 @@ public class FavoriteColorCollection {
 
         return new FavoriteColorCollection(favoriteColorMap);
     }
+
 }
