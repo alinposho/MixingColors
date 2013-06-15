@@ -32,6 +32,7 @@ public class FavoriteColorCollection {
                 List<Customer> associatedCustomers = favoriteColorMap.get(favoriteColor);
                 if (associatedCustomers == null) {
                     associatedCustomers = new ArrayList<>();
+                    favoriteColorMap.put(favoriteColor, associatedCustomers);
                 }
                 associatedCustomers.add(customer);
             }

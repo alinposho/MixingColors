@@ -11,6 +11,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotSame;
+import static org.mixing.colors.FilePathUtils.getFilePathFrom;
 
 public class ShopParserTest {
 
@@ -33,7 +34,7 @@ public class ShopParserTest {
         Shop expected = createOneCustomerShop(noOfDeclaredColors);
 
         // Exercise
-        Shop oneCustomerShop = ShopParser.parse(getFilePathFrom(fileName));
+        Shop oneCustomerShop = ShopParser.parse(getFilePathFrom(fileName, this.getClass()));
 
         // Verify
         assertEquals(expected, oneCustomerShop);
@@ -52,7 +53,7 @@ public class ShopParserTest {
 
         // Exercise
         String fileName = "OneColorAndTwoCustomers.txt";
-        Shop parsedShop = ShopParser.parse(getFilePathFrom(fileName));
+        Shop parsedShop = ShopParser.parse(getFilePathFrom(fileName, this.getClass()));
 
         // Verify
         assertEquals(expected, parsedShop);
@@ -83,7 +84,7 @@ public class ShopParserTest {
 
         // Exercise
         String fileName = "OneDeclaredColorTwoUsed.txt";
-        Shop parsedShop = ShopParser.parse(getFilePathFrom(fileName));
+        Shop parsedShop = ShopParser.parse(getFilePathFrom(fileName, this.getClass()));
 
         // Verify
         assertEquals(expected, parsedShop);
@@ -103,7 +104,7 @@ public class ShopParserTest {
 
         // Exercise
         String fileName = "FirstExampleInTheRequirements.txt";
-        Shop parsedShop = ShopParser.parse(getFilePathFrom(fileName));
+        Shop parsedShop = ShopParser.parse(getFilePathFrom(fileName, this.getClass()));
 
         // Verify
         assertEquals(expected, parsedShop);
@@ -134,7 +135,7 @@ public class ShopParserTest {
 
         // Exercise
         String fileName = "ThirdExampleInTheRequirements.txt";
-        Shop parsedShop = ShopParser.parse(getFilePathFrom(fileName));
+        Shop parsedShop = ShopParser.parse(getFilePathFrom(fileName, this.getClass()));
 
         // Verify
         assertEquals(expected, parsedShop);
@@ -144,8 +145,4 @@ public class ShopParserTest {
         return new Customer(customerId, ColorParser.parse(favoriteColors));
     }
 
-    private String getFilePathFrom(String fileName) {
-        String pathToFile = this.getClass().getPackage().getName().replace(".", "/") + "/" + fileName;
-        return this.getClass().getClassLoader().getResource(pathToFile).getFile();
-    }
 }

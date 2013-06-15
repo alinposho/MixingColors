@@ -50,7 +50,9 @@ class ColorMixing {
     }
 
     private void addSiblingsToResult(List<Color> favoriteColors) {
-        resultingCustomers.addAll(favoriteColorCollection.getCustomersWhoFavor(favoriteColors));
+        List<Customer> siblings = favoriteColorCollection.getCustomersWhoFavor(favoriteColors);
+        resultingCustomers.addAll(siblings);
+        initialCustomers.removeAll(siblings);
     }
 
 }
