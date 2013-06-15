@@ -144,7 +144,8 @@ public class ShopParserTest {
         return new Customer(customerId, ColorParser.parse(favoriteColors));
     }
 
-    private String getFilePathFrom(String pathToFile) {
+    private String getFilePathFrom(String fileName) {
+        String pathToFile = this.getClass().getPackage().getName().replace(".", "/") + "/" + fileName;
         return this.getClass().getClassLoader().getResource(pathToFile).getFile();
     }
 }
