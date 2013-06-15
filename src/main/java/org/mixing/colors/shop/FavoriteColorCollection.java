@@ -10,7 +10,7 @@ public class FavoriteColorCollection {
         this.favoriteColor = favoriteColor;
     }
 
-    public List<Customer> getCustomersWhoFavor(List<Color> colors) {
+    public List<Customer> getCustomersWhoFavor(List<Color> colors) {// O(number of colors)
         List<Customer> result = new ArrayList<>();
         for (Color color : colors) {
             result.addAll(favoriteColor.get(color));
