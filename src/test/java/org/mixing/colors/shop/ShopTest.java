@@ -1,9 +1,6 @@
 package org.mixing.colors.shop;
 
 import org.junit.Test;
-import org.mixing.colors.Color;
-import org.mixing.colors.ColorType;
-import org.mixing.colors.Customer;
 
 import java.util.ArrayList;
 import java.util.Collections;

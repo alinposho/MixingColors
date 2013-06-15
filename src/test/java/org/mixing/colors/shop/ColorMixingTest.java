@@ -1,7 +1,6 @@
 package org.mixing.colors.shop;
 
 import org.junit.Test;
-import org.mixing.colors.Color;
 import org.mixing.colors.exceptions.NoPossibleSolutionException;
 import org.mixing.colors.parsing.ColorParser;
 import org.mixing.colors.parsing.ShopParser;

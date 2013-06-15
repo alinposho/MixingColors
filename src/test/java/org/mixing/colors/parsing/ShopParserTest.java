@@ -1,9 +1,9 @@
 package org.mixing.colors.parsing;
 
 import org.junit.Test;
-import org.mixing.colors.Color;
-import org.mixing.colors.ColorType;
-import org.mixing.colors.Customer;
+import org.mixing.colors.shop.Color;
+import org.mixing.colors.shop.ColorType;
+import org.mixing.colors.shop.Customer;
 import org.mixing.colors.shop.Shop;
 
 import java.util.Arrays;

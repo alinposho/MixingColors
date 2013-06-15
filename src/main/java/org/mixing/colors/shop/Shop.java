@@ -1,8 +1,5 @@
 package org.mixing.colors.shop;
 
-import org.mixing.colors.Color;
-import org.mixing.colors.ColorType;
-import org.mixing.colors.Customer;
 import org.mixing.colors.exceptions.NoPossibleSolutionException;
 
 import java.util.Collections;
@@ -18,14 +15,10 @@ public class Shop {
         this.customers = customers;
     }
 
-    public List<Customer> getCustomers() {
-        return customers;
-    }
-
     public List<Color> mixColors() throws NoPossibleSolutionException {
 
         ColorMixing colorMixing = new ColorMixing(customers);
-        List<Color> colorMix =colorMixing.mix();
+        List<Color> colorMix = colorMixing.mix();
         colorMix = addColorsToTheListIfNecessary(colorMix);
         Collections.sort(colorMix);
 

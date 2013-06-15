@@ -1,7 +1,7 @@
 package org.mixing.colors.parsing;
 
-import org.mixing.colors.Color;
-import org.mixing.colors.Customer;
+import org.mixing.colors.shop.Color;
+import org.mixing.colors.shop.Customer;
 import org.mixing.colors.shop.Shop;
 
 import java.io.BufferedReader;
@@ -21,7 +21,7 @@ public class ShopParser {
      * Additionally, No customer will like more than one color in matte.
      *
      * @param pathToFile - the path to the file containing a string with the above mentioned format.
-     * @return
+     * @return A new Shop instance.
      */
     public static Shop parse(String pathToFile) {
         try (BufferedReader reader = new BufferedReader(new FileReader(pathToFile))) {

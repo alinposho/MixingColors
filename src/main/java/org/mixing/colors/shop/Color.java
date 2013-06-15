@@ -1,4 +1,4 @@
-package org.mixing.colors;
+package org.mixing.colors.shop;
 
 public class Color implements Comparable<Color> {
 

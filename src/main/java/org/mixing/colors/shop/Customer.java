@@ -1,4 +1,4 @@
-package org.mixing.colors;
+package org.mixing.colors.shop;
 
 import java.util.ArrayList;
 import java.util.List;

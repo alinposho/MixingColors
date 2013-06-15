@@ -1,7 +1,7 @@
 package org.mixing.colors.parsing;
 
-import org.mixing.colors.Color;
-import org.mixing.colors.ColorType;
+import org.mixing.colors.shop.Color;
+import org.mixing.colors.shop.ColorType;
 
 import java.util.ArrayList;
 import java.util.List;

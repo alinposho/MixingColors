@@ -1,8 +1,5 @@
 package org.mixing.colors.shop;
 
-import org.mixing.colors.Color;
-import org.mixing.colors.Customer;
-
 import java.util.*;
 
 public class FavoriteColorCollection {
