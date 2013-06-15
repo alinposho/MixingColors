@@ -6,6 +6,7 @@ public class Color {
     private final ColorType colorType;
 
     public Color(int id, ColorType colorType) {
+        assert id > 0;
         this.id = id;
         this.colorType = colorType;
     }

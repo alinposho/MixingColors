@@ -1,7 +1,11 @@
 package org.mixing.colors.shop;
 
+import org.mixing.colors.Color;
+import org.mixing.colors.ColorType;
 import org.mixing.colors.Customer;
+import org.mixing.colors.exceptions.NoPossibleSolutionException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Shop {
@@ -20,6 +24,46 @@ public class Shop {
 
     public List<Customer> getCustomers() {
         return customers;
+    }
+
+    public List<Color> mixColors() throws NoPossibleSolutionException {
+
+        List<Color> colorMix = new ArrayList<>();
+
+        colorMix = addCustomersToEndList(colorMix);
+        colorMix = addColorsToTheListIfNecessary(colorMix);
+
+        return colorMix;
+    }
+
+    private List<Color> addCustomersToEndList(List<Color> colorMix) {
+        return null;  //To change body of created methods use File | Settings | File Templates.
+    }
+
+    // Running time O(n^2)
+    List<Color> addColorsToTheListIfNecessary(List<Color> colorMix) {
+        if (colorMix.size() == numberOfColors) {
+            return colorMix;
+        }
+
+        for (int i = 0; i < numberOfColors; i++) {
+            int colorId = i + 1;
+            if (doesNotContainColorWith(colorId, colorMix)) {
+                colorMix.add(new Color(colorId, ColorType.GLOSSY));
+            }
+        }
+
+        return colorMix;
+    }
+
+    private boolean doesNotContainColorWith(int colorId, List<Color> colors) {
+        for (Color color : colors) {
+            if (color.getId() == colorId) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     @Override
