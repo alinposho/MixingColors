@@ -1,6 +1,5 @@
 package org.mixing.colors.shop;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.mixing.colors.Color;
 import org.mixing.colors.exceptions.NoPossibleSolutionException;
@@ -16,8 +15,8 @@ public class ColorMixingTest {
 
     @Test
     public void
-     should_return_the_only_color_in_the_shop_with_one_customer() throws NoPossibleSolutionException {
-    runTestForOneColorInTheShop("OneColorAndOneCustomer.txt", "1 G");
+    should_return_the_only_color_in_the_shop_with_one_customer() throws NoPossibleSolutionException {
+        runTestForOneColorInTheShop("OneColorAndOneCustomer.txt", "1 G");
     }
 
     @Test
@@ -44,11 +43,16 @@ public class ColorMixingTest {
         runTestForOneColorInTheShop("OneResultingColorMatte-NoConflictingPreferences.txt", "1 G 2 G 3 G 4 G 5 M");
     }
 
-    @Ignore("Not yet implemented")
     @Test
     public void
     should_return_one_matte_color_in_the_output_with_conflicting_preferences() throws NoPossibleSolutionException {
         runTestForOneColorInTheShop("OneResultingColorMatte-WithConflictingPreferences.txt", "1 G 2 G 3 G 4 G 5 M");
+    }
+
+    @Test(expected = NoPossibleSolutionException.class)
+    public void
+    should_return_raise_an_exception_since_there_are_no_possible_solutions() throws NoPossibleSolutionException {
+        runTestForOneColorInTheShop("NoPossibleSolutionOneCustomerDifferentOptions.txt", "1 G");
     }
 
     private void runTestForOneColorInTheShop(String fileName, String expectedColorsEncoded) throws NoPossibleSolutionException {

@@ -11,20 +11,18 @@ import java.util.List;
 
 class ColorMixing {
 
-    private final List<Customer> customers;
     private List<Customer> initialCustomers;
     private List<Customer> resultingCustomers;
     private List<Color> resultingColors;
     private FavoriteColorCollection favoriteColorCollection;
-    private List<Customer> oneFavoriteColorMatteCustomers;
+    private List<Customer> outlawCustomers;  //Because they have matte color preferences :)
 
     public ColorMixing(List<Customer> customers) {
-        this.customers = customers;
         resultingColors = new ArrayList<>();
         initialCustomers = new ArrayList<>(customers);
         resultingCustomers = new ArrayList<>();
         favoriteColorCollection = FavoriteColorCollection.transform(customers);
-        oneFavoriteColorMatteCustomers = new ArrayList<>();
+        outlawCustomers = new ArrayList<>();
     }
 
     public List<Color> mix() throws NoPossibleSolutionException {
@@ -33,7 +31,7 @@ class ColorMixing {
             addCustomerAndSimblingsToResult(firstCustomer);
         }
 
-        if (oneFavoriteColorMatteCustomers.isEmpty()) {
+        if (outlawCustomers.isEmpty()) {
             return resultingColors;
         }
 
@@ -46,7 +44,7 @@ class ColorMixing {
     private void addCustomerAndSimblingsToResult(Customer customer) {
         List<Color> glossyColors = customer.getGlossyFavoriteColors();
         if (glossyColors.isEmpty()) {
-            oneFavoriteColorMatteCustomers.add(customer);
+            outlawCustomers.add(customer);
         } else {
             resultingColors.addAll(glossyColors);
             addSiblingsToResult(glossyColors);
@@ -63,11 +61,12 @@ class ColorMixing {
      * We are adding the customers who have only one preferred color and that color is matte.
      */
     private void addOutlawsToResult() throws NoPossibleSolutionException {
-        while (!oneFavoriteColorMatteCustomers.isEmpty()) {
-            Customer customer = oneFavoriteColorMatteCustomers.remove(0);
+        while (!outlawCustomers.isEmpty()) {
+            Customer customer = outlawCustomers.remove(0);
             Color favoriteColor = customer.getFavoriteColors().get(0);
             if (containsSimilarGlossyColor(favoriteColor)) {
                 replaceWith(favoriteColor);
+                resultingCustomers.add(customer);
             } else {
                 resultingCustomers.add(customer);
                 addSiblingsToResult(favoriteColor);
@@ -77,20 +76,42 @@ class ColorMixing {
     }
 
     private void addSiblingsToResult(Color favoriteColor) {
-        resultingCustomers.addAll(favoriteColorCollection.getCustomersWhoFavor(Arrays.asList(favoriteColor)));
+        resultingCustomers.addAll(getCustomersWhoFavor(favoriteColor));
+    }
+
+    private List<Customer> getCustomersWhoFavor(Color favoriteColor) {
+        return favoriteColorCollection.getCustomersWhoFavor(Arrays.asList(favoriteColor));
     }
 
     private boolean containsSimilarGlossyColor(Color favoriteColor) {
-        for (Color color : resultingColors) {
-            if (color.getId() == favoriteColor.getId()) {
-                assert color.getColorType() == ColorType.GLOSSY && favoriteColor.getColorType() == ColorType.MATTE;
-                return true;
-            }
-        }
-        return false;
+        return getGlossyColorSimilarTo(favoriteColor) != null;
     }
 
     private void replaceWith(Color favoriteColor) throws NoPossibleSolutionException {
+        Color similar = getGlossyColorSimilarTo(favoriteColor);
+        for (Customer customer : getCustomersWhoFavor(similar)) {
+            if (customer.getFavoriteColors().size() == 1) {
+                throw new NoPossibleSolutionException("Color " + favoriteColor + " and color " + similar + " are conflicting options!");
+            } else {
+                customer.getFavoriteColors().remove(similar);
+                if (customer.getGlossyFavoriteColors().isEmpty()) {
+                    outlawCustomers.add(customer);
+                    resultingCustomers.remove(customer);
+                }// else this customer is OK, It has other glossy color options.
+            }
+        }
+        resultingColors.remove(similar);
+        resultingColors.add(favoriteColor);
+    }
+
+    private Color getGlossyColorSimilarTo(Color favoriteColor) {
+        for (Color color : resultingColors) {
+            if (color.getId() == favoriteColor.getId()) {
+                assert color.getColorType() == ColorType.GLOSSY && favoriteColor.getColorType() == ColorType.MATTE;
+                return color;
+            }
+        }
+        return null;
     }
 
 }
