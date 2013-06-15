@@ -28,19 +28,24 @@ public class Customer {
         Customer customer = (Customer) o;
 
         if (id != customer.id) return false;
+        if (favoriteColor != null ? !favoriteColor.equals(customer.favoriteColor) : customer.favoriteColor != null)
+            return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        return id;
+        int result = id;
+        result = 31 * result + (favoriteColor != null ? favoriteColor.hashCode() : 0);
+        return result;
     }
 
     @Override
     public String toString() {
         return "Customer{" +
                 "id=" + id +
+                ", favoriteColor=" + favoriteColor +
                 '}';
     }
 }

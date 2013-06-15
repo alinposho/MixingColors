@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FileParsing {
+public class ShopParser {
 
     /**
      * Precondition: The file conforms to the format specified in the documentation:<br/>
@@ -23,7 +23,7 @@ public class FileParsing {
      * @param pathToFile - the path to the file containing a string with the above mentioned format.
      * @return
      */
-    public Shop parse(String pathToFile) {
+    public static Shop parse(String pathToFile) {
         try (BufferedReader reader = new BufferedReader(new FileReader(pathToFile))) {
             return parseNoExceptions(reader);
         } catch (FileNotFoundException e) {
@@ -33,7 +33,7 @@ public class FileParsing {
         }
     }
 
-    private Shop parseNoExceptions(BufferedReader reader) throws IOException {
+    private static Shop parseNoExceptions(BufferedReader reader) throws IOException {
         String line = reader.readLine();
         int numberOfColors = Integer.parseInt(line.trim());
         List<Customer> customers = parseCustomers(reader);
@@ -41,10 +41,10 @@ public class FileParsing {
         return new Shop(numberOfColors, customers);
     }
 
-    private List<Customer> parseCustomers(BufferedReader reader) throws IOException {
+    private static List<Customer> parseCustomers(BufferedReader reader) throws IOException {
 
         List<Customer> customers = new ArrayList<>();
-        int id = 0;
+        int id = 1;
 
         String line;
         while ((line = reader.readLine()) != null) {

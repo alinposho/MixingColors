@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 public class ColorParserTest {
 
@@ -16,7 +15,7 @@ public class ColorParserTest {
     public void
     should_return_a_list_of_one_favorite_matte_color() {
 
-        List<Color> favoriteColors = ColorParser.parse("1M");
+        List<Color> favoriteColors = ColorParser.parse("1 M");
 
         assertEquals(1, favoriteColors.size());
         assertEquals(new Color(1, ColorType.MATTE), favoriteColors.get(0));
@@ -26,7 +25,7 @@ public class ColorParserTest {
     public void
     should_return_a_list_of_one_favorite_glossy_color() {
 
-        List<Color> favoriteColors = ColorParser.parse("2G");
+        List<Color> favoriteColors = ColorParser.parse("2 G");
 
         assertEquals(1, favoriteColors.size());
         assertEquals(new Color(2, ColorType.GLOSSY), favoriteColors.get(0));
@@ -37,7 +36,7 @@ public class ColorParserTest {
     should_return_a_list_of_favorite_colors() {
 
         // Notice that we do not check for duplicate entries nor for duplicate matte colors
-        List<Color> favoriteColors = ColorParser.parse("1G 2G 3M 1G 4M");
+        List<Color> favoriteColors = ColorParser.parse("1 G 2 G 3 M 1 G 4 M");
 
         assertEquals(5, favoriteColors.size());
         assertIsExpected(favoriteColors);

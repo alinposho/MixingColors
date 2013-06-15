@@ -26,13 +26,16 @@ public class Color {
         Color color = (Color) o;
 
         if (id != color.id) return false;
+        if (colorType != color.colorType) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        return id;
+        int result = id;
+        result = 31 * result + (colorType != null ? colorType.hashCode() : 0);
+        return result;
     }
 
     @Override

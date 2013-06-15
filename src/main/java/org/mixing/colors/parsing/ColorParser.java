@@ -8,13 +8,12 @@ import java.util.List;
 
 public class ColorParser {
 
-    public static List<Color> parse(String colorEncoding) {
-        String[] colorCodes = colorEncoding.split(" ");
+    public static List<Color> parse(String colorsEncoding) {
+        String[] colorCodes = colorsEncoding.split(" ");
         List<Color> colors = new ArrayList<>();
-        for (String colorCode : colorCodes) {
-            int endIndex = colorCode.length() - 1;
-            int colorId = Integer.parseInt(colorCode.substring(0, endIndex));
-            if (isColorMatteCode(colorCode.substring(endIndex))) {
+        for (int i = 0; i < colorCodes.length; i+=2) {
+            int colorId = Integer.parseInt(colorCodes[i]);
+            if (isColorMatteCode(colorCodes[i + 1])) {
                 colors.add(new Color(colorId, ColorType.MATTE));
             } else {
                 colors.add(new Color(colorId, ColorType.GLOSSY));

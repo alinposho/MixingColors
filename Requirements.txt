@@ -18,3 +18,23 @@ Discoveries:
     1G 2M 3G
        2M
           3M
+
+ Test case to illustrate the use of ShopParser:
+ 1
+ 1M
+
+ 1
+ 1M
+ 1G
+
+Notice that we don't check that the customers use two colors when we declared just one.
+ 1
+ 1M
+ 2G
+
+First example from the requirements:
+5
+1 M 3 G 5 G
+2 G 3 M 4 G
+5 M
+
