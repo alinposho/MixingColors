@@ -1,6 +1,7 @@
 package org.mixing.colors;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class MixingAlgoritmUtils {
@@ -9,7 +10,7 @@ public class MixingAlgoritmUtils {
     public static List<Customer> createCustomers(int... customerNumbers) {
         List<Customer> customers = new ArrayList<>();
         for (int customerNumber : customerNumbers) {
-            customers.add(new Customer(customerNumber));
+            customers.add(new Customer(customerNumber, Collections.<Color>emptyList()));
         }
         return customers;
     }

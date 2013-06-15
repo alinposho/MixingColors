@@ -1,11 +1,23 @@
 package org.mixing.colors;
 
+import java.util.List;
+
 public class Customer {
 
     private final int id;
+    private final List<Color> favoriteColor;
 
-    public Customer(int id) {
+    public Customer(int id, List<Color> favoriteColor) {
         this.id = id;
+        this.favoriteColor = favoriteColor;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public List<Color> getFavoriteColor() {
+        return favoriteColor;
     }
 
     @Override
