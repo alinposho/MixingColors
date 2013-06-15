@@ -5,7 +5,6 @@ import org.mixing.colors.ColorType;
 import org.mixing.colors.Customer;
 import org.mixing.colors.exceptions.NoPossibleSolutionException;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Shop {
@@ -18,26 +17,17 @@ public class Shop {
         this.customers = customers;
     }
 
-    public int getNumberOfColors() {
-        return numberOfColors;
-    }
-
     public List<Customer> getCustomers() {
         return customers;
     }
 
     public List<Color> mixColors() throws NoPossibleSolutionException {
 
-        List<Color> colorMix = new ArrayList<>();
-
-        colorMix = addCustomersToEndList(colorMix);
+        ColorMixing colorMixing = new ColorMixing(customers);
+        List<Color> colorMix = colorMixing.mix();
         colorMix = addColorsToTheListIfNecessary(colorMix);
 
         return colorMix;
-    }
-
-    private List<Color> addCustomersToEndList(List<Color> colorMix) {
-        return null;  //To change body of created methods use File | Settings | File Templates.
     }
 
     // Running time O(n^2)
