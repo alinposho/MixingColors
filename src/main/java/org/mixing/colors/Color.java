@@ -1,6 +1,6 @@
 package org.mixing.colors;
 
-public class Color {
+public class Color implements Comparable<Color> {
 
     private final int id;
     private final ColorType colorType;
@@ -45,5 +45,10 @@ public class Color {
                 "id=" + id +
                 ", colorType=" + colorType +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Color other) {
+        return id - other.id;
     }
 }
