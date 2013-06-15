@@ -23,13 +23,13 @@ public class ShopTest {
         Shop shop = new Shop(numberOfColors, Collections.<Customer>emptyList());
 
         List<Color> colorMix = createDummyColorMix(NUMBER_OF_DUMMY_COLORS);
+        int initialNumberOfColors = colorMix.size();
 
         // Exercise
         List<Color> result = shop.addColorsToTheListIfNecessary(colorMix);
 
         // Verify
-        assertEquals(NUMBER_OF_DUMMY_COLORS, result.size());
-
+        assertEquals(initialNumberOfColors, result.size());
     }
 
     @Test
