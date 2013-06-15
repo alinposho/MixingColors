@@ -1,3 +1,24 @@
+Strategy for mixing colors:
+ 1. Go through the list of customers, adding them to the endlist one, by one.
+ 2. Each time a customer is added to the list, its list of favorite colors is checked.
+ 3a. In case none of the colors are in the endlist of colors, they are added along with the merged list of cutomers whose
+    favorite colors include this customers favorite colors. Maybe consider not adding the matte colors? Also consider
+    whether adding the customers related to this one should be made recursive or not.
+ 3b In case there is a collision - one, or more, of the colors in the end list has a different shade(matte/glossy) than
+        the one from the customer's list of favorites. If I choose to add only the glossy colors first, this should make the
+        whole problem a lot easier, I would be sure that the new color is matte.
+    In case the customer has other colors that do not collide, add the customer and the non colliding colors to the end lists
+ 3c In case there is a collision and the customer's favorite color list is a list of one color. Check whether the
+        colliding color in the end list, for its list of clients, they have other colors in the end list, or that can
+        be added to the end list. In case they do, replace the colliding color in the end list with the new one and
+        add the customer in the end list, along with all its siblings.
+ 3d In case that for 3c there is at least one customer that does not have another favorite color that can be added to the
+        end list instead of the colliding one, then we are in the special case when we do not have a mixing solution.
+        This is going to be hard to determine for all possible cases, considering the test scenarios bellow.
+ 4 In case we reached the end of the customer list but not all colors have been added to the end list, we iterate through
+        the list and add the missing colors in the glossy shade.
+
+
 Discoveries:
 
  - Since there can be only one matte preferred color per customer the following case cannot happen
@@ -18,6 +39,15 @@ Discoveries:
     1G 2M 3G
        2M
           3M
+
+
+
+
+
+
+
+Test cases:
+
 
  Test case to illustrate the use of ShopParser:
  1
