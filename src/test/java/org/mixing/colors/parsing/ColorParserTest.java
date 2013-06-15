@@ -1,13 +1,14 @@
 package org.mixing.colors.parsing;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.mixing.colors.Color;
 import org.mixing.colors.ColorType;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class ColorParserTest {
 
@@ -31,7 +32,6 @@ public class ColorParserTest {
         assertEquals(new Color(2, ColorType.GLOSSY), favoriteColors.get(0));
     }
 
-    @Ignore("Not yet implemented")
     @Test
     public void
     should_return_a_list_of_favorite_colors() {
@@ -44,6 +44,13 @@ public class ColorParserTest {
     }
 
     private void assertIsExpected(List<Color> favoriteColors) {
-        //To change body of created methods use File | Settings | File Templates.
+        List<Color> expectedColors = new ArrayList<>();
+        expectedColors.add(new Color(1, ColorType.GLOSSY));
+        expectedColors.add(new Color(2, ColorType.GLOSSY));
+        expectedColors.add(new Color(3, ColorType.MATTE));
+        expectedColors.add(new Color(1, ColorType.GLOSSY));
+        expectedColors.add(new Color(4, ColorType.MATTE));
+
+        assertEquals(expectedColors, favoriteColors);
     }
 }
