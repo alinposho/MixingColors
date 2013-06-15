@@ -13,21 +13,8 @@ public class Customer {
         this.favoriteColors = favoriteColor;
     }
 
-    public int getId() {
-        return id;
-    }
-
     public List<Color> getFavoriteColors() {
         return favoriteColors;
-    }
-
-    public boolean hasGlossyColors() {
-        for(Color color : favoriteColors) {
-            if(color.getColorType() == ColorType.GLOSSY) {
-                return true;
-            }
-        }
-        return false;
     }
 
     public List<Color> getGlossyFavoriteColors() {
