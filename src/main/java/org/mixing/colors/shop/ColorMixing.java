@@ -23,7 +23,7 @@ class ColorMixing {
     public List<Color> mix() throws NoPossibleSolutionException {
         while (!initialCustomers.isEmpty()) {                                     // // O(number of colors * number of customers)
             Customer firstCustomer = initialCustomers.remove(0);
-            addCustomerAndSimblingsToResult(firstCustomer); // O(number of colors)
+            processCustomerAndSiblings(firstCustomer); // O(number of colors)
         }
 
         if (outlawCustomers.isEmpty()) {
@@ -35,7 +35,7 @@ class ColorMixing {
 
     }
 
-    private void addCustomerAndSimblingsToResult(Customer customer) {   //O(number of colors)
+    private void processCustomerAndSiblings(Customer customer) {   //O(number of colors)
         List<Color> glossyColors = customer.getGlossyFavoriteColors(); // O(number of colors)
         if (glossyColors.isEmpty()) {
             outlawCustomers.add(customer);
@@ -50,12 +50,12 @@ class ColorMixing {
         initialCustomers.removeAll(siblings);
     }
 
-    private void addOutlawsToResult() throws NoPossibleSolutionException {  // O(number of colors * number of customers ^ 2)
+    private void addOutlawsToResult() throws NoPossibleSolutionException {  // O(number of colors * number of customers ^ 2)??
         while (!outlawCustomers.isEmpty()) {
             Customer customer = outlawCustomers.remove(0);
             Color favoriteColor = customer.getFavoriteColors().get(0);
             if (containsSimilarGlossyColor(favoriteColor)) {
-                replaceWith(favoriteColor);          // O(number of colors * number of customers)
+                replaceColorInResultWith(favoriteColor);          // O(number of colors * number of customers)
             } else {
                 addSiblingsToResult(favoriteColor);  // O(number of customers)
                 if (!resultingColors.contains(favoriteColor)) {
@@ -65,27 +65,18 @@ class ColorMixing {
         }
     }
 
-    private void addSiblingsToResult(Color favoriteColor) { // O(number of customers)
-        List<Customer> customersWhoFavor = getCustomersWhoFavor(favoriteColor);
-        outlawCustomers.removeAll(customersWhoFavor); // O(number of customers)
-    }
-
-    private List<Customer> getCustomersWhoFavor(Color favoriteColor) { // O(1)
-        return favoriteColorCollection.getCustomersWhoFavor(Arrays.asList(favoriteColor));
-    }
-
     private boolean containsSimilarGlossyColor(Color favoriteColor) {
         return getGlossyColorSimilarTo(favoriteColor) != null;
     }
 
-    private void replaceWith(Color favoriteColor) throws NoPossibleSolutionException {       // O(number of colors * number of customers)
+    private void replaceColorInResultWith(Color favoriteColor) throws NoPossibleSolutionException {       // O(number of colors * number of customers)
         Color similar = getGlossyColorSimilarTo(favoriteColor);
         for (Customer customer : getCustomersWhoFavor(similar)) { // // O(number of customers)
             if (noSolutionPossible(customer)) {
                 throw new NoPossibleSolutionException("Color " + favoriteColor + " and color " + similar + " are conflicting options!");
             } else {
                 customer.getFavoriteColors().remove(similar);
-                if (customer.getGlossyFavoriteColors().isEmpty()) { // O(number of colors)
+                if (customer.getGlossyFavoriteColors().isEmpty()) { // O(number of colors)  can be O(1) if caching is enabled
                     outlawCustomers.add(customer);
                 }// else this customer is OK, It has other glossy color options.
             }
@@ -93,11 +84,20 @@ class ColorMixing {
 
         resultingColors.remove(similar);
         resultingColors.add(favoriteColor);
-        addSiblingsToResult(favoriteColor);
+        addSiblingsToResult(favoriteColor); // O(number of customers)
+    }
+
+    private List<Customer> getCustomersWhoFavor(Color favoriteColor) { // O(1)
+        return favoriteColorCollection.getCustomersWhoFavor(Arrays.asList(favoriteColor));
     }
 
     private boolean noSolutionPossible(Customer customer) {
         return customer.getFavoriteColors().size() == 1;
+    }
+
+    private void addSiblingsToResult(Color favoriteColor) { // O(number of customers)
+        List<Customer> customersWhoFavor = getCustomersWhoFavor(favoriteColor);      // O(1)
+        outlawCustomers.removeAll(customersWhoFavor); // O(number of customers)
     }
 
     private Color getGlossyColorSimilarTo(Color favoriteColor) {
