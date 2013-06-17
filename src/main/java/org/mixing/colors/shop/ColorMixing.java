@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+// TODO Consider splitting this class' functionality if it changes considerably in the future.
 class ColorMixing {
 
     private List<Customer> initialCustomers;
@@ -41,11 +42,11 @@ class ColorMixing {
             outlawCustomers.add(customer);
         } else {
             resultingColors.addAll(glossyColors);
-            addSiblingsToResult(glossyColors);    // O(number of colors)
+            addToResultCustomerWhoFavor(glossyColors);    // O(number of colors)
         }
     }
 
-    private void addSiblingsToResult(List<Color> favoriteColors) {
+    private void addToResultCustomerWhoFavor(List<Color> favoriteColors) {
         List<Customer> siblings = favoriteColorCollection.getCustomersWhoFavor(favoriteColors); // O(number of colors)
         initialCustomers.removeAll(siblings);
     }
