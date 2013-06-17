@@ -79,6 +79,12 @@ public class ColorMixingTest {
         runTestForOneColorInTheShop("AllFavoriteColorsMatteOutputMatte.txt", "1 M 2 M 3 M 4 M 5 M");
     }
 
+    @Test
+    public void
+    should_return_alternate_matte_and_glossy_colors_for_the_third_example_in_the_requirements() throws NoPossibleSolutionException {
+        runTestForOneColorInTheShop("ThirdExampleFromTheRequirements.txt", "1 G 2 M 3 G 4 M 5 G");
+    }
+
     private void runTestForOneColorInTheShop(String fileName, String expectedColorsEncoded) throws NoPossibleSolutionException {
         // Prepare
         List<Color> expectedResult = ColorParser.parse(expectedColorsEncoded);
