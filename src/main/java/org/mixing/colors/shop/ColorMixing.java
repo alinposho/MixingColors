@@ -21,13 +21,15 @@ class ColorMixing {
         outlawCustomers = new ArrayList<>();
     }
 
+    // A different approach might be to sort the customers by their number of favorite colors
+    // before processing them. This might improve the running time of the addOutlawsToResult...
     public List<Color> mix() throws NoPossibleSolutionException {
         while (!initialCustomers.isEmpty()) {                                     // // O(number of colors * number of customers)
             Customer firstCustomer = initialCustomers.remove(0);
             processCustomerAndSiblings(firstCustomer); // O(number of colors)
         }
 
-        if (outlawCustomers.isEmpty()) {
+        if (outlawCustomers.isEmpty()) {    // O(number of colors * number of customers ^ 2)??
             return resultingColors;
         }
 

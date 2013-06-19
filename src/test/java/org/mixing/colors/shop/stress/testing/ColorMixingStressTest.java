@@ -28,7 +28,7 @@ public class ColorMixingStressTest {
     }
 
     /**
-     * On my laptop(i5 Arrandale) it took 2m 45s to run, which is a lot more than the 0.7s seconds it took
+     * On my laptop(i5 Arrandale) this test took 2m 45s to run, which is a lot more than the 0.7s seconds it took
      * to run the 10_000 customer test. One possible explanation for this is the fact that the data structures that I
      * used do not fit into the CPU's cache for such a large number of customers. This means that for each change in the
      * data structures, and there are many, the performance penalty is high, since there are a lot of cache misses along
